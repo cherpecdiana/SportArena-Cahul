@@ -1,9 +1,3 @@
-/* ===================================================================
-   reveal.js — простой эффект плавного появления блоков при прокрутке
-   Работает одинаково на всех устройствах (desktop + mobile).
-   Использует IntersectionObserver, без зависимостей.
-=================================================================== */
-
 (function () {
     "use strict";
 
@@ -30,7 +24,6 @@
         });
 
         if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-            // показываем всё сразу, без анимации
             targets.forEach(function (el) {
                 el.classList.add("is-visible");
             });
