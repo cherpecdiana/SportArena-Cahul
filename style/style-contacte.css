@@ -46,11 +46,51 @@ header {
     justify-self: start;
 }
 
+.logo img {
+    display: block;
+    height: 38px;
+    width: auto;
+}
+
 .menu {
     display: flex;
     gap: 40px;
     list-style: none;
     justify-self: center;
+}
+
+.menu-toggle-checkbox {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    width: 44px;
+    height: 44px;
+
+    justify-self: end;
+
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+
+    background: white;
+    border-radius: 2px;
+
+    transition: 0.3s;
+}
+
+.menu-cta-mobile {
+    display: none;
 }
 
 .button-container {
@@ -255,6 +295,12 @@ header {
 .contact-form button:hover {
     background: #74A400;
 }
+
+.contact-form button:disabled {
+    background: #5a5a5a;
+    color: rgba(255,255,255,.8);
+    cursor: not-allowed;
+}
 /* подвал */
 
 footer h3 {
@@ -346,30 +392,210 @@ footer {
     color: var(--color-primary);
 }
 
-.hidden {
-    opacity: 0;
-    transform: translateY(50px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+/* ===================== МОБИЛЬНАЯ АДАПТАЦИЯ ===================== */
+
+@media (max-width: 768px) {
+
+    /* навигация */
+
+    .navbar {
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+
+        padding: 16px 20px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        flex-direction: column;
+        gap: 0;
+
+        background-color: #1A1A1A;
+        border-top: 1px solid #2A2A2A;
+
+        max-height: 0;
+        overflow: hidden;
+
+        transition: max-height 0.35s ease;
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu a {
+        display: block;
+        padding: 16px 20px;
+
+        font-size: 18px;
+    }
+
+    .menu-cta-mobile {
+        display: list-item;
+
+        padding: 16px 20px 20px;
+    }
+
+    .menu-cta-mobile .btn {
+        display: block;
+
+        width: 100%;
+
+        padding: 12px 0;
+
+        text-align: center;
+
+        background-color: #86BD04;
+        border-radius: 20px;
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .menu {
+        max-height: 420px;
+    }
+
+    .hamburger {
+        position: relative;
+        z-index: 1001;
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* основной блок инфо и форма в колонку */
+
+    #contacte {
+        flex-direction: column;
+        align-items: center;
+
+        gap: 48px;
+
+        padding: 40px 24px 60px;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
+
+    .contact-info h1 {
+        font-size: 36px;
+
+        text-align: center;
+
+        margin-bottom: 32px;
+    }
+
+    .contact-info > div {
+        max-width: 360px;
+        margin: 0 auto 24px;
+    }
+
+    /* форма на всю ширину */
+
+    .contact-form {
+        width: 100%;
+        max-width: 485px;
+        height: auto;
+
+        padding: 36px 24px;
+    }
+
+    .contact-form form {
+        width: 100%;
+    }
+
+    .contact-form input[type="text"] {
+        width: 100%;
+    }
+
+    .contact-form form div {
+        width: 100%;
+
+        flex-direction: column;
+
+        gap: 22px;
+
+        margin-bottom: 22px;
+    }
+
+    .contact-form input[type="tel"],
+    .contact-form input[type="email"] {
+        width: 100%;
+    }
+
+    .contact-form textarea {
+        width: 100%;
+        height: 160px;
+    }
+
+    .contact-form button {
+        width: 100%;
+    }
+
+    /* подвал */
+
+    footer {
+        flex-direction: column;
+
+        gap: 24px;
+
+        padding: 30px 24px;
+
+        min-height: auto;
+    }
+
+    .footer-contact {
+        position: static;
+        transform: none;
+    }
+
+    footer::before {
+        display: none;
+    }
+
+    .footer-info {
+        gap: 24px;
+
+        flex-wrap: wrap;
+    }
 }
 
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+@media (max-width: 480px) {
 
+    .contact-info h1 {
+        font-size: 30px;
+    }
 
-
-button:disabled {
-
-    background: #86BD04;
-
-    cursor: default;
-
-    opacity: 1;
-}
-
-html {
-    scroll-behavior: smooth;
+    .contact-form {
+        padding: 28px 18px;
+    }
 }

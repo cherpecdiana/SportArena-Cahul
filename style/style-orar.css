@@ -46,11 +46,51 @@ header {
     justify-self: start;
 }
 
+.logo img {
+    display: block;
+    height: 38px;
+    width: auto;
+}
+
 .menu {
     display: flex;
     gap: 40px;
     list-style: none;
     justify-self: center;
+}
+
+.menu-toggle-checkbox {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    width: 44px;
+    height: 44px;
+
+    justify-self: end;
+
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+
+    background: white;
+    border-radius: 2px;
+
+    transition: 0.3s;
+}
+
+.menu-cta-mobile {
+    display: none;
 }
 
 .button-container {
@@ -119,6 +159,14 @@ header {
     justify-content: center;
 
     margin-bottom: 72px;
+}
+
+.orar-scroll {
+    max-width: 100%;
+}
+
+.orar-hint {
+    display: none;
 }
 
 #orar table {
@@ -302,20 +350,218 @@ footer {
     color: var(--color-primary);
 }
 
+/* ===================== МОБИЛЬНАЯ АДАПТАЦИЯ ===================== */
+
+@media (max-width: 768px) {
+
+    /* навигация */
+
+    .navbar {
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+
+        padding: 16px 20px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        flex-direction: column;
+        gap: 0;
+
+        background-color: #1A1A1A;
+        border-top: 1px solid #2A2A2A;
+
+        max-height: 0;
+        overflow: hidden;
+
+        transition: max-height 0.35s ease;
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu a {
+        display: block;
+        padding: 16px 20px;
+
+        font-size: 18px;
+    }
+
+    .menu-cta-mobile {
+        display: list-item;
+
+        padding: 16px 20px 20px;
+    }
+
+    .menu-cta-mobile .btn {
+        display: block;
+
+        width: 100%;
+
+        padding: 12px 0;
+
+        text-align: center;
+
+        background-color: #86BD04;
+        border-radius: 20px;
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .menu {
+        max-height: 420px;
+    }
+
+    .hamburger {
+        position: relative;
+        z-index: 1001;
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle-checkbox:checked ~ .navbar .hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* заголовок */
+
+    #orar-header {
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        padding: 0 24px;
+    }
+
+    #orar-header h1 {
+        font-size: 26px;
+    }
+
+    /* таблица */
+
+    #orar {
+        justify-content: flex-start;
+
+        flex-direction: column;
+
+        margin-bottom: 48px;
+
+        padding: 0 24px;
+    }
+
+    .orar-hint {
+        display: block;
+
+        margin-bottom: 12px;
+
+        color: rgba(255,255,255,.5);
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .orar-scroll {
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+        border-radius: 10px;
+    }
+
+    #orar table {
+        width: 720px;
+    }
+
+    #orar th,
+    #orar td {
+        padding: 0 24px;
+
+        font-size: 16px;
+
+        height: 64px;
+    }
+
+    #orar thead th {
+        height: 50px;
+
+        font-size: 16px;
+    }
+
+    /* подвал */
+
+    footer {
+        flex-direction: column;
+
+        gap: 24px;
+
+        padding: 30px 24px;
+
+        height: auto;
+        min-height: auto;
+    }
+
+    .footer-contact {
+        position: static;
+        top: auto;
+        transform: none;
+    }
+
+    footer::before {
+        display: none;
+    }
+
+    .footer-info {
+        gap: 24px;
+
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #orar-header h1 {
+        font-size: 22px;
+    }
+
+    #orar table {
+        width: 600px;
+    }
+
+    #orar th,
+    #orar td {
+        padding: 0 16px;
+
+        font-size: 14px;
+
+        height: 56px;
+    }
+}
+
  
-.hidden {
-    opacity: 0;
-    transform: translateY(50px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-html {
-    scroll-behavior: smooth;
-}

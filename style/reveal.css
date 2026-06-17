@@ -1,0 +1,26 @@
+/* ===================================================================
+   reveal.css — простой эффект плавного появления блоков при скролле
+   Подключается на всех страницах вместе с reveal.js
+=================================================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Уважаем настройку "уменьшить анимацию" в ОС пользователя */
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal,
+    .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
